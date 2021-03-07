@@ -56,6 +56,32 @@ const createdFolder = async (req, res, next) => {
     return next(error);
   }
 
+  // vrisko ola ta folders pou einai sto root folder mesa mias aki den exoun parentId kai girnao afta oste an dimiourgiso kainourgio
+  // folder sto root level perno afto pou molis eftiaksa mazi me ola ta ala einai ena workaround gia to root fodler mnono, giati se ola ta
+  // aala tha stelno apla to ParentFolder pou tha exei ola ta child fodlers
+  let RootFolder;
+  if (ParentId == undefined) {
+    console.log("Undefined PranetDI");
+    try {
+      RootFolder = await Folder.find({ ParentId: { $exists: false } });
+    } catch (err) {
+      const error = new HttpError(
+        "Creating Folder failed please try again,on RootFolder",
+        500
+      );
+      return next(error);
+    }
+    console.log("RootFolder !!!", RootFolder);
+
+    res.status(201).json({
+      folder: {
+        FolderName: "Root",
+        path: "home",
+        childFolders: RootFolder,
+      },
+    });
+  }
+
   res.status(201).json({ folder: createdFolder });
 };
 module.exports = createdFolder;
