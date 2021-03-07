@@ -1,18 +1,18 @@
-*{
-  margin:0;
+* {
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 .fileUpload_container {
   min-height: 100vh;
-  background: linear-gradient(to right top, #614385 , #516395);
+  background: linear-gradient(to right top, #614385, #516395);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
-
 
 .glass {
   background: white;
@@ -33,17 +33,15 @@
   flex-direction: column;
 }
 
-
-
-.container_form{
+.container_form {
   display: flex;
+
   align-items: center;
   justify-content: space-around;
   min-width: 100%;
   min-height: 100%;
   flex-direction: column;
 }
-
 
 label {
   background-color: #fad0c4;
@@ -53,24 +51,23 @@ label {
 
   cursor: pointer;
   display: inline-block;
-  min-width:200px;
-  min-height:40px;
-  text-align:center;
+  min-width: 200px;
+  min-height: 40px;
+  text-align: center;
   vertical-align: middle;
-  line-height: 40px; 
-/*   same as min-height */
-    border-radius:0  15px 15px 0;
-
+  line-height: 40px;
+  /*   same as min-height */
+  border-radius: 0 15px 15px 0;
 }
 
-#file-chosen{
-  min-height:50px;
-  min-width:300px;
-  background:white;
+#file-chosen {
+  min-height: 50px;
+  min-width: 300px;
+  background: white;
 
   font-family: sans-serif;
-  font-size:20px;
-  border-radius:15px  0px 0px 15px;
+  font-size: 20px;
+  border-radius: 15px 0px 0px 15px;
   /* adistrofo border ratidus apo afto pou exo pao pano */
   /* gia an boro na kano center to text eveal to diplay flex */
   display: flex;
@@ -78,49 +75,39 @@ label {
   padding-left: 20px;
   /* exo valiue stin arxi tou css oti exo border-box oste to pardding na enotet me to width kai to height ! */
   align-items: center;
-
 }
 
-.input_wrapper{
+.input_wrapper {
   z-index: 90;
   border-radius: 15px;
-  display:flex;
+  display: flex;
   flex-direction: column;
-  justify-content:space-around;
-  align-items:center;
+  justify-content: space-around;
+  align-items: center;
   height: 400px;
-  width:800px; 
+  width: 800px;
   /* background:transparent; */
   border: 2px dashed #fad0c4;
-
 }
-
 
 /* adi na exo to background tranasacparent sto input wrapper ftiaxno mia ali class oste na boro na alazo to background color tou div otan kano drag over kapio file */
-.input_wrapper_highlighted{
-  background: #2fdbb6
+.input_wrapper_highlighted {
+  background: #2fdbb6;
 }
-.input_wrapper_not_highlighted{
-  background:transparent
+.input_wrapper_not_highlighted {
+  background: transparent;
 }
 
-.drag_and_drop_h1{
+.drag_and_drop_h1 {
   color: white;
 }
 
-
-.file_display_button_wrapper{
-  display:flex;
+.file_display_button_wrapper {
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-content: center;
-  
-  
-
 }
-
-
-
 
 .container_button {
   width: 400px;
@@ -129,7 +116,6 @@ label {
   justify-content: center;
   align-items: center;
 }
-
 
 .center {
   width: 180px;
@@ -173,8 +159,7 @@ svg {
   font-weight: 100;
 }
 
-
-.progress{
+.progress {
   margin-top: 50px;
   min-width: 700px;
 }
@@ -184,9 +169,7 @@ svg {
   top: 50%; */
   height: 2px;
   background: #fad0c4;
-  
 }
-
 
 .count {
   /* position: absolute;

@@ -1,0 +1,130 @@
+.MODAL_STYLES {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  background: #f6f5f7;
+  padding: 50px;
+  z-index: 1000;
+  animation-name: modal_animation;
+  animation-duration: 1s;
+  /* gia na kratiso to positon apo to telefteo animation */
+  animation-fill-mode: forwards;
+  border-radius: 50px;
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.2);
+  width: calc(100% - 50px);
+  max-width: 700px;
+}
+
+@keyframes modal_animation {
+  from {
+    /* to -50% ienai apo to traonslate X gia na einai sto center apo to (-50%,-50%) */
+    /* transform: translateY(-100vh); */
+    transform: translate(-50%, -100vh);
+  }
+  to {
+    /* transform: translateY(0vh); */
+    transform: translate(-50%, 0vh);
+  }
+}
+
+.product__form {
+  width: 100%;
+  display: grid;
+  grid-gap: 30px;
+  padding-top: 20px;
+}
+
+.inputGroup {
+  width: 100%;
+  position: relative;
+}
+
+/* exo ksexoristo class se kathe ena apo ta inputs sto modal giati exo grid kai thelo diaforeriko class gia na alszo to grid row kai column */
+.inputGroup1 {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+}
+.inputGroup2 {
+  grid-column: 1 / span 2;
+  grid-row: 2;
+}
+
+.inputGroup3 {
+  grid-column: 1;
+  grid-row: 3;
+}
+.inputGroup4 {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+/* afto einai gia to ena button pou eina terma dekisa gia afto exo column 2 kai text align right */
+.inputGroup5 {
+  grid-column: 2;
+  grid-row: 5;
+  text-align: right;
+}
+
+/* gia to button pou exo kato aristera */
+.inputGroup6 {
+  grid-column: 1;
+  grid-row: 5;
+  text-align: left;
+}
+
+.inputGroup__textfield {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 16px;
+  color: #555;
+  padding: 20px 10px 20px 50px;
+  width: 100%;
+  border-radius: 25px;
+  box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #ffffff;
+}
+
+.inputGroup__textfield_dropdown {
+  border: none;
+  outline: none;
+  background: rgb(255, 255, 255);
+  font-size: 16px;
+  color: #555;
+  padding: 10px 10px 10px 10px;
+  width: 100%;
+  box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #ffffff;
+}
+
+.product__create__button {
+  padding: 20px;
+  width: 50%;
+  border: 0;
+  background: #4d6d9a;
+  cursor: pointer;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 5px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.product__create__button:hover {
+  background-color: #77a6f7;
+}
+
+.close_modal_button {
+  padding: 20px;
+  width: 50%;
+  border: 0;
+  background: rgb(209, 46, 46);
+  cursor: pointer;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 5px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.close_modal_button:hover {
+  background-color: rgb(249, 0, 0);
+}
