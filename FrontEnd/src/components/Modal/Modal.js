@@ -38,7 +38,7 @@ function Modal(props) {
             />
           </div>
 
-          <div class="inputGroup inputGroup5">
+          <div className="inputGroup inputGroup5">
             <button
               type="submit"
               onClick={createFolderHandler}
@@ -47,7 +47,7 @@ function Modal(props) {
               Create
             </button>
           </div>
-          <div class="inputGroup inputGroup6">
+          <div className="inputGroup inputGroup6">
             <button
               onClick={onClose}
               type="button"

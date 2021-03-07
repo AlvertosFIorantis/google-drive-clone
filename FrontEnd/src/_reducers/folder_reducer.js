@@ -1,14 +1,16 @@
 import {
   CREATE_FOLDER,
   SELECT_FOLDER,
+  FOLDER_FAILED,
 } from "../_actions/constants/folder_constants/folderConstants";
 
 // prepei pada na exo ena initial state
 const initialState = {
-  folderId: "",
+  folderId: undefined,
   folder: {},
   childFolders: [],
   childFiles: [],
+  path: "/home",
   error: "",
 };
 
@@ -17,12 +19,18 @@ export default function (state = initialState, action) {
     case CREATE_FOLDER:
       return {
         ...state,
+        childFolders: action.payload.childFolders,
       };
     case SELECT_FOLDER:
       return {
         ...state,
         folderId: action.payload.folderId,
         folder: action.payload.folder,
+      };
+    case FOLDER_FAILED:
+      return {
+        ...state,
+        error: action.payload.error,
       };
 
     default:

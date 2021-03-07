@@ -1,2 +1,3 @@
 export const CREATE_FOLDER = "CREATE_FOLDER";
 export const SELECT_FOLDER = "SELECT_FOLDER";
+export const FOLDER_FAILED = "FOLDER_FAILED";
