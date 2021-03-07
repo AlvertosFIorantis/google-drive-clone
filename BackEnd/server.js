@@ -6,6 +6,8 @@ const connectDB = require("./database_config");
 
 // kano import to router gia to file upload
 const fileUploadRouter = require("./routes/file_upload_router");
+// kano import ta routes gia to folder
+const Folder = require("./routes/folder_route");
 
 const app = express();
 app.use(cors());
@@ -31,6 +33,9 @@ app.use((req, res, next) => {
 // dimoiorgo to endpoint gia to file upload edo exo route /uploads kai epidi exo "/" sto file uplaod route simeni otan pao sto /upload trexei to
 // controler pou exei sxesi gia to upload file logic
 app.use("/upload", fileUploadRouter);
+
+// ta endopoint gia ta folder routes
+app.use("/folder", Folder);
 
 app.get("/download", function (req, res) {
   const file = `${__dirname}/uploads/${filename}`;

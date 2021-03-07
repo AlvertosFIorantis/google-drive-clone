@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "./Modal/Modal";
 import "./Dashboard.css";
+import Folder from "./Folder/Folder";
 
 function Dashboard() {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,6 +54,7 @@ function Dashboard() {
           </button>
         </div>
       </div>
+      <Folder name={"test"} />
     </div>
   );
 }
