@@ -12,7 +12,6 @@ const getFolder = async (req, res, next) => {
       const error = new HttpError("Can not get the folder", 500);
       return next(error);
     }
-    console.log("RootFolder !!!", RootFolder);
 
     res.status(201).json({
       folder: {
@@ -21,32 +20,32 @@ const getFolder = async (req, res, next) => {
         childFolders: RootFolder,
       },
     });
-  }
-  console.log(ParentId);
-  try {
-    RootFolder = await Folder.find({ ParentId: ParentId });
-  } catch (err) {
-    const error = new HttpError("Can not get the folder", 500);
-    return next(error);
-  }
-  let myMainFolder;
-  try {
-    myMainFolder = await Folder.findById(ParentId);
-  } catch (err) {
-    const error = new HttpError(
-      "Creating Folder failed please try again,on RootFolder",
-      500
-    );
-    return next(error);
-  }
+  } else {
+    try {
+      RootFolder = await Folder.find({ ParentId: ParentId });
+    } catch (err) {
+      const error = new HttpError("Can not get the folder", 500);
+      return next(error);
+    }
+    let myMainFolder;
+    try {
+      myMainFolder = await Folder.findById(ParentId);
+    } catch (err) {
+      const error = new HttpError(
+        "Creating Folder failed please try again,on RootFolder",
+        500
+      );
+      return next(error);
+    }
 
-  res.status(201).json({
-    folder: {
-      FolderName: myMainFolder.FolderName,
-      path: myMainFolder.path,
-      childFolders: RootFolder,
-    },
-  });
+    res.status(201).json({
+      folder: {
+        FolderName: myMainFolder.FolderName,
+        path: myMainFolder.path,
+        childFolders: RootFolder,
+      },
+    });
+  }
 };
 
 module.exports = getFolder;
