@@ -27,7 +27,7 @@ function App() {
           path="/folder/:folderId"
           render={(props) => <Dashboard key={props.location.key} {...props} />}
         />
-
+        {/* isos preei to arxiko dasbhaord na einai sto idio route me to alo folder/:folder id apla na min exo id se afto */}
         <Route exact path="/" component={Dashboard} />
       </Switch>
     </div>
