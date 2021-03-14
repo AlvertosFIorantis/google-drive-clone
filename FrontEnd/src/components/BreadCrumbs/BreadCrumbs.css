@@ -14,7 +14,8 @@ ul.breadcrumb li {
   font-size: 18px;
 }
 
-.breadcrumbLink:before {
+/* gia na min exo pavla prin apo to proto tag */
+.breadcrumbLink + .breadcrumbLink:before {
   padding: 8px;
   color: black;
   content: "/\00a0";

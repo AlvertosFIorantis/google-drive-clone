@@ -48,7 +48,6 @@ function Dashboard_specific_folder(props) {
 
   //perno ta data apo to backend otan ginete load to componet
   useEffect(() => {
-    console.log(props.timestamp);
     if (param.folderId != undefined) {
       console.log("UseParams exist", param.folderId);
       dispatch(

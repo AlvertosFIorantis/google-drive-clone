@@ -12,6 +12,7 @@ const initialState = {
   childFolders: [],
   childFiles: [],
   path: "/",
+  path_ids: "/",
   error: "",
 };
 
@@ -22,6 +23,7 @@ export default function (state = initialState, action) {
         ...state,
         folderId: action.payload.folderId,
         path: action.payload.path,
+        path_ids: action.payload.path_ids,
         childFolders: action.payload.childFolders,
       };
     case SELECT_FOLDER:
@@ -35,6 +37,7 @@ export default function (state = initialState, action) {
         ...state,
         folderId: action.payload.folderId,
         path: action.payload.path,
+        path_ids: action.payload.path_ids,
         childFolders: action.payload.childFolders,
       };
     case FOLDER_FAILED:

@@ -3,7 +3,8 @@ const Folder = require("../../models/folder");
 
 const createdFolder = async (req, res, next) => {
   let { FolderName, ParentId, path } = req.body;
-  console.log("req.body", req.body);
+  // console.log("req.body", req.body);
+  console.log("Path", path);
 
   // gia na vro  parent folder oste na prosetheso sto array sto shema to neo folder pou eftiaksa
   let ParentFolder;
@@ -46,12 +47,14 @@ const createdFolder = async (req, res, next) => {
       FolderName: FolderName,
       ParentId: ParentId,
       path: path + "/" + ParentFolder.FolderName,
+      path_ids: path + "/" + ParentFolder._id,
     });
   } else {
     createdFolder = new Folder({
       FolderName: FolderName,
       ParentId: ParentId,
-      path: "/",
+      path: "ROOT",
+      path_ids: "/",
     });
   }
 
@@ -90,7 +93,8 @@ const createdFolder = async (req, res, next) => {
     res.status(201).json({
       folder: {
         FolderName: "Root",
-        path: "/",
+        path: "ROOT",
+        path_ids: "/",
         childFolders: RootFolder,
       },
     });
@@ -105,14 +109,15 @@ const createdFolder = async (req, res, next) => {
       return next(error);
     }
 
-    console.log("Created folder", createdFolder);
-    console.log("RootFolder", RootFolder);
+    // console.log("Created folder", createdFolder);
+    // console.log("RootFolder", RootFolder);
     res.status(201).json({
       folder: {
         folderId: ParentId,
         // afto borei na prepei na to alakso sto createdFolder._id
         FolderName: createdFolder.FolderName,
         path: createdFolder.path,
+        path_ids: createdFolder.path_ids,
         childFolders: RootFolder,
       },
     });

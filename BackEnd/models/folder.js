@@ -6,6 +6,7 @@ const folderSchema = new Schema({
   FolderName: { type: String, required: true },
   ParentId: { type: String },
   path: { type: String, required: true },
+  path_ids: { type: String, required: true },
   childFolders: [
     { type: mongoose.Types.ObjectId, required: true, ref: "Folder" },
   ],

@@ -18,6 +18,7 @@ const getFolder = async (req, res, next) => {
         folderId: undefined,
         FolderName: "Root",
         path: "/",
+        path_ids: "/",
         childFolders: RootFolder,
       },
     });
@@ -44,6 +45,7 @@ const getFolder = async (req, res, next) => {
         folderId: myMainFolder._id,
         FolderName: myMainFolder.FolderName,
         path: myMainFolder.path,
+        path_ids: myMainFolder.path_ids,
         childFolders: RootFolder,
       },
     });
