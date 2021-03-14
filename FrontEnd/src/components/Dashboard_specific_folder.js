@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 // gia na boro na paro to id apo to url
 import { useParams } from "react-router-dom";
 
-function Dashboard_specific_folder() {
+function Dashboard_specific_folder(props) {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [FolderName, setFolderName] = useState("");
@@ -48,6 +48,7 @@ function Dashboard_specific_folder() {
 
   //perno ta data apo to backend otan ginete load to componet
   useEffect(() => {
+    console.log(props.timestamp);
     if (param.folderId != undefined) {
       console.log("UseParams exist", param.folderId);
       dispatch(

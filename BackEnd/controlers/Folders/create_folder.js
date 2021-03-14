@@ -56,9 +56,9 @@ const createdFolder = async (req, res, next) => {
   }
 
   try {
-    console.log("try to save a Folder");
+    // console.log("try to save a Folder");
     await createdFolder.save();
-    console.log("worked");
+    // console.log("worked");
 
     if (ParentId != undefined) {
       ParentFolder.childFolders.push(createdFolder);
@@ -75,7 +75,7 @@ const createdFolder = async (req, res, next) => {
   // aala tha stelno apla to ParentFolder pou tha exei ola ta child fodlers
   let RootFolder;
   if (ParentId == undefined) {
-    console.log("Undefined PranetDI");
+    // console.log("Undefined PranetDI");
     try {
       RootFolder = await Folder.find({ ParentId: { $exists: false } });
     } catch (err) {
@@ -85,17 +85,37 @@ const createdFolder = async (req, res, next) => {
       );
       return next(error);
     }
-    console.log("RootFolder !!!", RootFolder);
+    // console.log("RootFolder !!!", RootFolder);
 
     res.status(201).json({
       folder: {
         FolderName: "Root",
-        path: "home",
+        path: "/",
         childFolders: RootFolder,
       },
     });
   } else {
-    res.status(201).json({ folder: createdFolder });
+    try {
+      RootFolder = await Folder.find({ ParentId: ParentId });
+    } catch (err) {
+      const error = new HttpError(
+        "Creating Folder failed please try again,on RootFolder",
+        500
+      );
+      return next(error);
+    }
+
+    console.log("Created folder", createdFolder);
+    console.log("RootFolder", RootFolder);
+    res.status(201).json({
+      folder: {
+        folderId: ParentId,
+        // afto borei na prepei na to alakso sto createdFolder._id
+        FolderName: createdFolder.FolderName,
+        path: createdFolder.path,
+        childFolders: RootFolder,
+      },
+    });
   }
 };
 module.exports = createdFolder;

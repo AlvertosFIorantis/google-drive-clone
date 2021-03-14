@@ -16,10 +16,15 @@ function App() {
         <FileUpload />
       </div>
       <Switch>
-        <Route
+        {/* <Route
           exact
           path="/folder/:folderId"
           component={Dashboard_specific_folder}
+        /> */}
+        <Route
+          // exo afto to logic me to render gia na boro na kaon re render to idio componet parolo pou pataoo to idio link oste kateh fora pou alazo folder na ginete i alagi
+          path="/folder/:folderId"
+          render={(props) => <Dashboard key={props.location.key} {...props} />}
         />
 
         <Route exact path="/" component={Dashboard} />

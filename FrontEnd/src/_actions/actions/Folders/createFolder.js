@@ -18,7 +18,7 @@ export const createFolder = (dataFromComponent) => async (dispatch) => {
       data: dataFromComponent,
     });
     // otan telioso oti thelo na kano pali kano return to object opos exo kai sta apla action apla i idiafora tora einai oti adi gia return object exo dispatch to object
-    console.log(responseData.data);
+    console.log("created folder", responseData.data);
     dispatch({
       type: CREATE_FOLDER,
       // boro na peraso san payload pragmata pou perno apo to backend
