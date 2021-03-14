@@ -2,7 +2,8 @@ const HttpError = require("../../error/http-error");
 const Folder = require("../../models/folder");
 
 const getFolder = async (req, res, next) => {
-  const ParentId = req.ParentId;
+  const ParentId = req.body.ParentId;
+
   let RootFolder;
   if (ParentId == undefined) {
     try {
@@ -21,6 +22,7 @@ const getFolder = async (req, res, next) => {
       },
     });
   }
+  console.log(ParentId);
   try {
     RootFolder = await Folder.find({ ParentId: ParentId });
   } catch (err) {
