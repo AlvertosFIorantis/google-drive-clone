@@ -3,11 +3,6 @@ const Folder = require("../../models/folder");
 
 const createdFolder = async (req, res, next) => {
   let { FolderName, ParentId, path } = req.body;
-  const createdFolder = new Folder({
-    FolderName: FolderName,
-    ParentId: ParentId,
-    path: path,
-  });
 
   // gia na vro  parent folder oste na prosetheso sto array sto shema to neo folder pou eftiaksa
   let ParentFolder;
@@ -39,6 +34,24 @@ const createdFolder = async (req, res, next) => {
       );
       return next(error);
     }
+  }
+  if (childFolder.length > 0) {
+    return next(new HttpError("Folder already exists.", 422));
+  }
+
+  let createdFolder;
+  if (ParentId != undefined) {
+    createdFolder = new Folder({
+      FolderName: FolderName,
+      ParentId: ParentId,
+      path: path + "/" + ParentFolder.FolderName,
+    });
+  } else {
+    createdFolder = new Folder({
+      FolderName: FolderName,
+      ParentId: ParentId,
+      path: path,
+    });
   }
 
   try {
