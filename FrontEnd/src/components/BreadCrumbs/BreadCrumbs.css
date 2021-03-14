@@ -1,0 +1,31 @@
+.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #fad0c4;
+}
+
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+
+.breadcrumbLink {
+  display: inline;
+  font-size: 18px;
+}
+
+.breadcrumbLink:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+
+.breadcrumbLink a {
+  color: #01447e;
+  text-decoration: none;
+}
+
+.breadcrumbLink a:hover {
+  color: #0275d8;
+  text-decoration: underline;
+}

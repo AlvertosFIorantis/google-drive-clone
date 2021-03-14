@@ -3,6 +3,7 @@ import Modal from "./Modal/Modal";
 import "./Dashboard.css";
 import Folder from "./Folder/Folder";
 import { createFolder } from "../_actions/actions/Folders/createFolder";
+import BreadCrumbs from "./BreadCrumbs/BreadCrumbs.js";
 // den kano to connect pou kano sta ala compoents tha xrisimopios to hooks gia na kano dispatch to icon
 import { useDispatch, useSelector } from "react-redux";
 
@@ -46,6 +47,7 @@ function Dashboard() {
         FolderNameHandler={FolderNameHandler}
         createFolderHandler={createFolderHandler}
       />
+      <BreadCrumbs />
       <div className="container_button">
         <div className="center">
           <button onClick={onClosingModalHandler} className="btn">
