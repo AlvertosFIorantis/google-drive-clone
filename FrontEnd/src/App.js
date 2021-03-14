@@ -23,6 +23,7 @@ function App() {
         /> */}
         <Route
           // exo afto to logic me to render gia na boro na kaon re render to idio componet parolo pou pataoo to idio link oste kateh fora pou alazo folder na ginete i alagi
+          // https://stackoverflow.com/questions/57786965/force-remount-component-when-click-on-the-same-react-router-link-multiple-times
           path="/folder/:folderId"
           render={(props) => <Dashboard key={props.location.key} {...props} />}
         />
