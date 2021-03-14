@@ -3,7 +3,7 @@ const Folder = require("../../models/folder");
 
 const getFolder = async (req, res, next) => {
   const ParentId = req.body.ParentId;
-
+  console.log("ParentId", req.body);
   let RootFolder;
   if (ParentId == undefined) {
     try {

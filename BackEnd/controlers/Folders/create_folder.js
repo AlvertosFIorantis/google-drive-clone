@@ -3,6 +3,7 @@ const Folder = require("../../models/folder");
 
 const createdFolder = async (req, res, next) => {
   let { FolderName, ParentId, path } = req.body;
+  console.log("req.body", req.body);
 
   // gia na vro  parent folder oste na prosetheso sto array sto shema to neo folder pou eftiaksa
   let ParentFolder;
@@ -50,7 +51,7 @@ const createdFolder = async (req, res, next) => {
     createdFolder = new Folder({
       FolderName: FolderName,
       ParentId: ParentId,
-      path: path,
+      path: "/",
     });
   }
 

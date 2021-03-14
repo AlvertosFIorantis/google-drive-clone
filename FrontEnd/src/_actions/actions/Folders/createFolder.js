@@ -22,7 +22,7 @@ export const createFolder = (dataFromComponent) => async (dispatch) => {
     dispatch({
       type: CREATE_FOLDER,
       // boro na peraso san payload pragmata pou perno apo to backend
-      payload: responseData.data,
+      payload: responseData.data.folder,
     });
   } catch (err) {
     console.log("my folder error:...", err);

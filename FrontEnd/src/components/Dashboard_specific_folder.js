@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 // gia na boro na paro to id apo to url
 import { useParams } from "react-router-dom";
 
-function Dashboard() {
+function Dashboard_specific_folder() {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [FolderName, setFolderName] = useState("");
@@ -110,4 +110,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Dashboard_specific_folder;

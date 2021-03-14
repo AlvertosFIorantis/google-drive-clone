@@ -6,7 +6,7 @@ import "./Folder.css";
 function Folder(props) {
   return (
     <>
-      <Link to="//folder/:folderId" style={{ textDecoration: "none" }}>
+      <Link to={`/folder/${props.folderId}`} style={{ textDecoration: "none" }}>
         <div className="Folder_wrapper">
           <FolderIcon />
           {props.name}

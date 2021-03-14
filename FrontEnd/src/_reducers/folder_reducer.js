@@ -11,7 +11,7 @@ const initialState = {
   folder: {},
   childFolders: [],
   childFiles: [],
-  path: "/home",
+  path: "/",
   error: "",
 };
 
@@ -20,6 +20,8 @@ export default function (state = initialState, action) {
     case CREATE_FOLDER:
       return {
         ...state,
+        folderId: action.payload.folderId,
+        path: action.payload.path,
         childFolders: action.payload.childFolders,
       };
     case SELECT_FOLDER:

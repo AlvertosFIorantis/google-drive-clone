@@ -5,6 +5,6 @@ const getFolder = require("../controlers/Folders/get_folder");
 
 router.post("/createFolder", createdFolder);
 
-router.get("/", getFolder);
+router.post("/", getFolder);
 
 module.exports = router;
