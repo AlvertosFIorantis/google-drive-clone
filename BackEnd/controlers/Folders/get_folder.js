@@ -15,6 +15,7 @@ const getFolder = async (req, res, next) => {
 
     res.status(201).json({
       folder: {
+        folderId: undefined,
         FolderName: "Root",
         path: "",
         childFolders: RootFolder,
@@ -40,6 +41,7 @@ const getFolder = async (req, res, next) => {
 
     res.status(201).json({
       folder: {
+        folderId: myMainFolder._id,
         FolderName: myMainFolder.FolderName,
         path: myMainFolder.path,
         childFolders: RootFolder,

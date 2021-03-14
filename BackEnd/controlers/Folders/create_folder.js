@@ -35,7 +35,7 @@ const createdFolder = async (req, res, next) => {
       return next(error);
     }
   }
-  if (childFolder.length > 0) {
+  if (childFolder && childFolder.length > 0) {
     return next(new HttpError("Folder already exists.", 422));
   }
 
@@ -93,8 +93,8 @@ const createdFolder = async (req, res, next) => {
         childFolders: RootFolder,
       },
     });
+  } else {
+    res.status(201).json({ folder: createdFolder });
   }
-
-  res.status(201).json({ folder: createdFolder });
 };
 module.exports = createdFolder;
