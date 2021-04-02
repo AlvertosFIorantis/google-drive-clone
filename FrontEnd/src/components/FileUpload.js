@@ -39,6 +39,10 @@ function FileUpload() {
     e.preventDefault();
     const formData = new FormData();
     formData.append("file", file);
+    //prostheto ta extrra data sto request opos gia paradgiam to parent folder
+    const ParentId = "qeqq2eq2";
+    formData.append("ParentId", ParentId);
+    // console.log("Form data", formData.getAll("ParentId"));
 
     try {
       const res = await axios.post("http://localhost:5000/upload", formData, {
