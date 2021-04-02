@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import Modal from "./Modal/Modal";
 import "./Dashboard.css";
 import Folder from "./Folder/Folder";
+import File from "./File/File";
 import { createFolder } from "../_actions/actions/Folders/createFolder";
 import { getFolder } from "../_actions/actions/Folders/getFolder";
+import { getFiles } from "../_actions/actions/Files/getFiles";
 import BreadCrumbs from "./BreadCrumbs/BreadCrumbs.js";
 // den kano to connect pou kano sta ala compoents tha xrisimopios to hooks gia na kano dispatch to icon
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +21,8 @@ function Dashboard() {
   const childFolders = useSelector(
     (state) => state.Folder_reducer.childFolders
   );
+  // perno ola ta files apo to redux stroes gia ta files
+  const list_of_files = useSelector((state) => state.File_reducer.files);
 
   const param = useParams();
 
@@ -57,10 +61,26 @@ function Dashboard() {
           })
         )
       );
+      // another 1 dispatcth for getting the files
+      dispatch(
+        getFiles(
+          JSON.stringify({
+            ParentId: param.folderId,
+          })
+        )
+      );
     } else {
       console.log("UseParams", ParentId);
       dispatch(
         getFolder(
+          JSON.stringify({
+            ParentId: ParentId,
+          })
+        )
+      );
+      // another 1 dispatcth for getting the files
+      dispatch(
+        getFiles(
           JSON.stringify({
             ParentId: ParentId,
           })
@@ -105,6 +125,10 @@ function Dashboard() {
       {childFolders.map((item, i) => {
         // console.log("item", item.FolderName);
         return <Folder name={item.FolderName} folderId={item._id} />;
+      })}
+      {list_of_files.map((item, i) => {
+        // console.log("item", item.FolderName);
+        return <File name={item.FileName} folderId={item._id} />;
       })}
     </div>
   );

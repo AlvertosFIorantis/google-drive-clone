@@ -1,0 +1,19 @@
+.File_wrapper svg {
+  position: static;
+}
+
+.File_wrapper {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  width: 300px;
+  height: 60px;
+  color: aliceblue;
+  font-size: 40px;
+  background-color: red;
+  /* gia na exo ligo xoro sto telos tis selidas kalitera na to vgalo afto kai na valo perisoteor sto height sto megalo container */
+  /* margin-bottom: 10rem; */
+}
