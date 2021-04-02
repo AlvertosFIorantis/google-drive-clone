@@ -2,6 +2,7 @@ const HttpError = require("../../error/http-error");
 const Busboy = require("busboy");
 const fs = require("fs");
 const File = require("../../models/file");
+const Folder = require("../../models/folder");
 
 // an thelo na kano save kati sto database i thelo na kano autetication kai exo kaie me to database pada xrisimoipo async theoritka
 // stin apli tou ekdosi to sigkeirmepono code dne xriazete async ala ego to vazo soe periptosi pou to xriasto sto melon
@@ -54,10 +55,46 @@ const uploadFile = async (req, res, next) => {
     }
   );
 
-  busboy.on("finish", function () {
+  busboy.on("finish", async function () {
     console.log("Req.body", body);
-    const random_number = Math.random();
-    if (random_number < 0.5) {
+    const ParentId = body.ParentId;
+    const path = body.path;
+    // prota apo oal thelo na vro to parent folder oste na paro ola ta stxia apo to dabase adi gia to frontend
+    let ParentFolder;
+
+    if (ParentId != undefined) {
+      try {
+        ParentFolder = await Folder.findById(ParentId);
+      } catch (err) {
+        const error = new HttpError(
+          "Creating Folder failed please try again, on ParentFolder",
+          500
+        );
+        return next(error);
+      }
+    }
+    let createFile;
+    if (ParentId != undefined) {
+      createFile = new File({
+        FileName: myFileName,
+        ParentId: ParentId,
+        path: path + "/" + ParentFolder.FolderName,
+        path_ids: path + "/" + ParentFolder._id,
+      });
+    } else {
+      createFile = new File({
+        FileName: myFileName,
+        ParentId: ParentId,
+        path: "ROOT",
+        path_ids: "/",
+      });
+    }
+
+    try {
+      await createFile.save();
+    } catch (err) {
+      // an exo erro kai den boro na kano save sto database thelo na kano delete kai to file pou ekana save sto disk mias ak iden boro na to kano kai save sto atabase
+      console.log(err);
       console.log("Removing");
       path = `${__dirname}/../../uploads/${myFileName}`;
       fs.unlink(path, (err) => {
@@ -69,8 +106,28 @@ const uploadFile = async (req, res, next) => {
 
         //file removed
       });
+      const error = new HttpError(
+        "Uploading the file failed  please try again",
+        500
+      );
+      return next(error);
     }
-    console.log("Upload complete", random_number, myFileName);
+
+    // const random_number = Math.random();
+    // if (random_number < 0.5) {
+    //   console.log("Removing");
+    //   path = `${__dirname}/../../uploads/${myFileName}`;
+    //   fs.unlink(path, (err) => {
+    //     if (err) {
+    //       console.error(err);
+    //       const error = new HttpError("Uploading the file failed ", 500);
+    //       return next(error);
+    //     }
+
+    //     //file removed
+    //   });
+    // }
+    // console.log("Upload complete", random_number, myFileName);
     // res.writeHead(200, { 'Connection': 'close' });
     // res.end("That's all folks!");
     res.json({ message: "File was uploaded successfully" });

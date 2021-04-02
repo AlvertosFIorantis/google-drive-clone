@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Progressbar from "./Progressbar";
+// oste na kano connect sto redux store xoris na xriazete na xrisimopio to connect pou ekana palia
+import { useDispatch, useSelector } from "react-redux";
 
 function FileUpload() {
   const [file, setFile] = useState("");
@@ -9,6 +11,9 @@ function FileUpload() {
   const [message, setMessage] = useState("");
   const [uploadPercentage, setUploadPercentage] = useState(0);
   const [highlighted, setHighlighted] = useState(false);
+  // ta values pou thelo apo to redux store
+  const ParentId = useSelector((state) => state.Folder_reducer.folderId);
+  const path = useSelector((state) => state.Folder_reducer.path);
 
   const uploadFileHelperFunction = (e) => {
     e.preventDefault();
@@ -40,8 +45,8 @@ function FileUpload() {
     const formData = new FormData();
     formData.append("file", file);
     //prostheto ta extrra data sto request opos gia paradgiam to parent folder
-    const ParentId = "qeqq2eq2";
     formData.append("ParentId", ParentId);
+    formData.append("path", path);
     // console.log("Form data", formData.getAll("ParentId"));
 
     try {
