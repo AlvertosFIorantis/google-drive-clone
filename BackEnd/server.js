@@ -2,6 +2,9 @@ const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
 const connectDB = require("./database_config");
+// afta ta dio malon ta xriaome gia to download
+const path = require("path");
+const mime = require("mime");
 
 // kano import to router gia to file upload
 const fileUploadRouter = require("./routes/file_upload_router");
@@ -36,8 +39,14 @@ app.use("/upload", fileUploadRouter);
 // ta endopoint gia ta folder routes
 app.use("/folder", Folder);
 
-app.get("/download", function (req, res) {
+// donwload a file prepei na to valo se diko tou fnicton ala gia tora tha einai ok
+app.get("/download/:filename", function (req, res) {
+  console.log("Parameters for Download", req.params);
+  const filename = req.params.filename;
   const file = `${__dirname}/uploads/${filename}`;
+  console.log("file to be downloaded: ", file);
+  // den ksero an odos xriazome to res.set Headers
+
   res.download(file); // Set disposition and send it.
 });
 

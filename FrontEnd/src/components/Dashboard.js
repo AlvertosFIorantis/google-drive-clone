@@ -11,6 +11,8 @@ import BreadCrumbs from "./BreadCrumbs/BreadCrumbs.js";
 import { useDispatch, useSelector } from "react-redux";
 // gia na boro na paro to id apo to url
 import { useParams } from "react-router-dom";
+// import axios
+import axios from "axios";
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -89,6 +91,22 @@ function Dashboard() {
     }
   }, [dispatch]);
 
+  // downloading file helper function
+  const DownloadHelper = async (filename) => {
+    console.log("Downloading file........", filename);
+    window.location.href = `http://localhost:5000/download/${filename}`;
+    // den boro na kano dwonload file me axios request xriazome link !!!!!!!!!!!!!!!!!!!
+    // https://stackoverflow.com/questions/55313748/download-file-by-clicking-a-button-in-reactjs
+    // try {
+    //  const res = await axios.get(`http://localhost:5000/download/${filename}`);
+    //  const blob = await res.blob();
+    //  download(blob, filename);
+    // } catch (err) {
+    //   console.log(err);
+
+    // }
+  };
+
   return (
     <div className="dashboard-folder-container">
       <Modal
@@ -128,7 +146,13 @@ function Dashboard() {
       })}
       {list_of_files.map((item, i) => {
         // console.log("item", item.FolderName);
-        return <File name={item.FileName} folderId={item._id} />;
+        return (
+          <File
+            name={item.FileName}
+            folderId={item._id}
+            download={DownloadHelper}
+          />
+        );
       })}
     </div>
   );

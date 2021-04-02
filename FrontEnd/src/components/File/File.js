@@ -6,7 +6,7 @@ import "./File.css";
 function File(props) {
   return (
     <>
-      <div className="File_wrapper">
+      <div onClick={() => props.download(props.name)} className="File_wrapper">
         <FolderIcon />
         {props.name}
       </div>
